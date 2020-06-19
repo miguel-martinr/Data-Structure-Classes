@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dsc_base.hpp"
+#include "exceptions.hpp"
 
 #include <vector>
 
@@ -27,24 +28,22 @@ class dsc_array : public dsc_base<T> {
 
 template <class T, int N>
 void dsc_array<T,N>::insert(const T& element) {
-  if (occ_ == arr_.size()) {
-    cout << "\ndsc_exception_full\n";
-  } else {
-    T* ptr = new T(element);
-    arr_[occ_] = ptr;
-    occ_++;
-  }
+  if (occ_ == arr_.size()) 
+    throw exception_full("array");
+  
+  T* ptr = new T(element);
+  arr_[occ_] = ptr;
+  occ_++;
 }
 
 template <class T, int N>
 T dsc_array<T,N>::retrieve(void) {
-  if (empty()) {
-    cout << "\ndsc_exception_empty\n";
-  } else {
-    T aux = *(arr_[--occ_]); 
-    delete arr_[occ_];
-    return aux;
-  }
+  if (empty()) 
+    throw exception_empty("array");
+
+  T aux = *(arr_[--occ_]); 
+  delete arr_[occ_];
+  return aux;
 }
 
 template <class T, int N>

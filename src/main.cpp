@@ -15,20 +15,21 @@ int main(int argc, char* argv[]) {
 
   dsc_base<int>* first = new dsc_array<int,20>();
 
-  for (int i = 0; i < 20; i++)
-    first->insert(i);
 
 
+
+
+    
 
   dsc_base<int>* second = new dsc_list<int>;
 
-/*  for (int i = 20; i < 40; i++)
+  for (int i = 0; i < 40; i++)
     second->insert(i);
-  */
+  
 
 
   cout << "First: " << first << endl;
-  dsc_move(first, second);
+  dsc_move(second, first);
   cout << "Second: " << second<< endl;
   cout << "Esta es mi salida\n";
 }
@@ -37,5 +38,13 @@ int main(int argc, char* argv[]) {
 template <class T>
 void dsc_move(dsc_base<T>* first, dsc_base<T>* second) {
   while(!first->empty()) 
+  try
+  {
     second->insert(first->retrieve());
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+    return;
+  }
 }
