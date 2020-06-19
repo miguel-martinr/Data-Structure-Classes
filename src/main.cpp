@@ -28,9 +28,11 @@ int main(int argc, char* argv[]) {
   
 
 
-  cout << "First: " << first << endl;
+  cout << "Array: " << first << endl;
   dsc_move(second, first);
-  cout << "Second: " << second<< endl;
+  cout << "List: " << second<< endl;
+  for (int i = 0; i < 50; i++)
+    second->retrieve();
   cout << "Esta es mi salida\n";
 }
 

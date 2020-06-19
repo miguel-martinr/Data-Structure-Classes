@@ -35,13 +35,15 @@ void dsc_list<T>::insert(const T& element) {
 
 template <class T>
 T dsc_list<T>::retrieve(void) {
-  if (!empty()) {
-    T data = head_->data_;
-    dsc_nodo<T>* aux = head_;
-    head_ = head_->next_;
-    delete aux;
-    return data;
-  } 
+  if (empty())
+    throw exception_empty("list");
+    
+  T data = head_->data_;
+  dsc_nodo<T>* aux = head_;
+  head_ = head_->next_;
+  delete aux;
+  return data;
+  
 }
 
 template <class T>
